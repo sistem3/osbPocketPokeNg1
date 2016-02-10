@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html ng-app="osbPocketPokeDemo">
+<head>
+    <title>OSB PocketPoke</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
+
+    <!-- Src Test -->
+    <link rel="stylesheet" href="src/css/osbPocketPoke.css">
+    <!-- Dist Test -->
+    <!--<link rel="stylesheet" href="dist/osbPocketPoke.css">-->
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+<div ng-view>
+    <osb-pocket-poke></osb-pocket-poke>
+</div>
+
+<script src="bower_components/angular/angular.min.js"></script>
+<script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+<!-- Src Test -->
+<script src="src/osbPocketPoke.directive.js"></script>
+<script src="src/osbPocketPoke.directive.tpl.js"></script>
+<!-- Dist Test -->
+<!--<script src="dist/osbPocketPoke.js"></script>-->
+<script>
+    'use strict';
+    angular.module('osbPocketPokeDemo', ['ngSanitize', 'sistem3.osb-pocket-poke']);
+</script>
+</body>
+
+</html>
