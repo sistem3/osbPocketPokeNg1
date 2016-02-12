@@ -30,6 +30,41 @@ angular.module('sistem3.osb-pocket-poke', ['osb-pocket-poke-template'])
                     $scope.pokemonSprites = JSON.parse(pokeSpriteCache);
                 }
 
+                $scope.getPokemon = function(pokemon, newList) {
+                    //console.log(pokemon);
+                    if (!newList) {
+                        if ($scope..pokemon.length > 1) {
+                            $scope..pokemon.forEach(function(element, index, array) {
+                                if (pokemon.name === element.name) {
+                                    $scope..getPokeSprite(element, true);
+                                }
+                            });
+                            return false;
+                        }
+                    }
+                    fetch(pokemon.url)
+                        .then(function(response) {
+                            if (response.status !== 200) {
+                                console.log('Looks like there was a problem. Status Code: ' + response.status);
+                                return;
+                            }
+                            response.json().then(function(data) {
+                                $scope..pokemon.push(data);
+                                if (!newList) {
+                                    // Cache size too small for full listing storage
+                                    localStorage.setItem('osbPocketPoke.pokemon', JSON.stringify($scope..pokemon));
+                                    $scope..getPokeSprite(data, true);
+                                } else {
+                                    console.log('set sprite');
+                                    $scope..getPokeSprite(data, false);
+                                }
+                            });
+                        })
+                        .catch(function(err) {
+                            console.log('Failed');
+                        });
+                };
+
                 $scope.getPokeList = function() {
                     if ($scope.pokemonList.length > 1) {
                         $scope.pokemonViewList = $scope.pokemonList.slice(0, $scope.listCount + 1);
