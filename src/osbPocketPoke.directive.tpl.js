@@ -20,19 +20,19 @@ angular.module("osbPocketPoke.tpl.html", []).run(["$templateCache", function($te
     "                <h2>{{ poke.name }} <span class=\"pull-right\"><i class=\"poke-icon poke-icon-pokeball-open\"></i></span></h2>\n" +
     "                <p><strong>Height:</strong> {{ poke.height }} | <strong>Weight:</strong> {{ poke.weight }} | <strong>Base XP:</strong> {{ poke.base_experience }}</p>\n" +
     "                <h4 ng-click=\"poke.statsVisible = !poke.statsVisible\" class=\"details\">Attributes <i class=\"fa pull-right\" ng-class=\"{'fa-chevron-down' : !poke.statsVisible, 'fa-chevron-up' : poke.statsVisible}\"></i></h4>\n" +
-    "                <ul class=\"list-unstyled details-list\" [hidden]=\"!poke.statsVisible\">\n" +
+    "                <ul class=\"list-unstyled details-list\" ng-hide=\"!poke.statsVisible\">\n" +
     "                    <li ng-repeat=\"stats in poke.stats\">\n" +
     "                        <p><strong>{{stats.stat.name}}</strong> <span class=\"pull-right\">{{stats.base_stat}}</span></p>\n" +
     "                    </li>\n" +
     "                </ul>\n" +
     "                <h4 ng-click=\"poke.abilitiesVisible = !poke.abilitiesVisible\" class=\"details\">Abilities <i class=\"fa pull-right\" ng-class=\"{'fa-chevron-down' : !poke.abilitiesVisible, 'fa-chevron-up' : poke.abilitiesVisible}\"></i></h4>\n" +
-    "                <ul class=\"list-unstyled details-list\" [hidden]=\"!poke.abilitiesVisible\">\n" +
+    "                <ul class=\"list-unstyled details-list\" ng-hide=\"!poke.abilitiesVisible\">\n" +
     "                    <li ng-repeat=\"ability in poke.abilities\">\n" +
     "                        <p>{{ability.ability.name}}</p>\n" +
     "                    </li>\n" +
     "                </ul>\n" +
     "                <h4 ng-click=\"poke.movesVisible = !poke.movesVisible\" class=\"details\">Moves <i class=\"fa pull-right\" ng-class=\"{'fa-chevron-down' : !poke.movesVisible, 'fa-chevron-up' : poke.movesVisible}\"></i></h4>\n" +
-    "                <ul class=\"list-unstyled details-list moves\" [hidden]=\"!poke.movesVisible\">\n" +
+    "                <ul class=\"list-unstyled details-list moves\" ng-hide=\"!poke.movesVisible\">\n" +
     "                    <li ng-repeat=\"move in poke.moves\">\n" +
     "                        <p>{{move.move.name}} <i class=\"fa fa-star\"></i></p>\n" +
     "                    </li>\n" +
