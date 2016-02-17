@@ -8,12 +8,12 @@ module.exports = function (grunt) {
       },
       main: {
         src: ['src/**/*.tpl.html'],
-        dest: 'src/js/osbPocketPoke.directive.tpl.js'
+        dest: 'src/osbPocketPoke.directive.tpl.js'
       }
     },
     concat: {
       build: {
-        src: ['src/js/osbPocketPoke.directive.tpl.js', 'src/js/osbPocketPoke.directive.js'],
+        src: ['src/osbPocketPoke.directive.tpl.js', 'src/osbPocketPoke.directive.js'],
         dest: 'dist/osbPocketPoke.js'
       }
     },
