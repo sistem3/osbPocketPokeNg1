@@ -74,7 +74,6 @@ angular.module('sistem3.osb-pocket-poke', ['osb-pocket-poke-template'])
                     if (!newList) {
                         if ($scope.pokemon.length > 1) {
                             $scope.pokemon.forEach(function(element, index, array) {
-                                console.log(element);
                                 if (pokemon.name === element.name) {
                                     $scope.getPokeSprite(element, true);
                                 }

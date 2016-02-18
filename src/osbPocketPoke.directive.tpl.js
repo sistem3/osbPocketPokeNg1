@@ -4,7 +4,7 @@ angular.module("osbPocketPoke.tpl.html", []).run(["$templateCache", function($te
   $templateCache.put("osbPocketPoke.tpl.html",
     "<main class=\"osb-pocket-poke-holder\">\n" +
     "    <header class=\"container\">\n" +
-    "        <h1><i class=\"poke-icon poke-icon-pokeball\"></i> PocketPoké</h1>\n" +
+    "        <h1><i class=\"poke-icon poke-icon-pokeball\"></i> PocketPok&#x00E9;</h1>\n" +
     "    </header>\n" +
     "    <section class=\"pokeDex\">\n" +
     "        <ul class=\"pokeList list-unstyled\">\n" +
