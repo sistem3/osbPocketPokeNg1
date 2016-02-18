@@ -71,8 +71,6 @@ angular.module('sistem3.osb-pocket-poke', ['osb-pocket-poke-template'])
                 };
 
                 $scope.getPokemon = function(pokemon, newList) {
-                    console.log(pokemon);
-                    console.log(newList);
                     if (!newList) {
                         if ($scope.pokemon.length > 1) {
                             $scope.pokemon.forEach(function(element, index, array) {
@@ -182,6 +180,8 @@ angular.module('sistem3.osb-pocket-poke', ['osb-pocket-poke-template'])
                             console.log('Failed');
                         });
                 };
+
+                $scope.getPokeList();
             }
         };
     }]);
