@@ -1,10 +1,62 @@
 <main class="osb-pocket-poke-holder">
     <header class="container">
         <h1><i class="poke-icon poke-icon-pokeball"></i> PocketPok&#x00E9;</h1>
+        <nav>
+            <ul class="list-unstyled list-inline">
+                <li><button class="btn btn-primary" ng-click="navHidden = !navHidden"><i class="fa fa-bars"></i></button></li>
+                <li ng-if="!navHidden"><button class="btn btn-primary" ng-click="sectionDisplay = 'pokemon'"><i class="poke-icon poke-icon-pokeball-open"></i> Pokémon</button></li>
+                <li ng-if="!navHidden"><button class="btn btn-primary" ng-click="getLocations()"><i class="fa fa-map-marker"></i> Locations</button></li>
+                <li ng-if="!navHidden"><button class="btn btn-primary" ng-click="getEvolutionChain()"><i class="poke-icon poke-icon-strain"></i> Evolution</button></li>
+                <li ng-if="!navHidden"><button class="btn btn-primary" ng-click="getBerries()"><i class="poke-icon poke-icon-berry"></i> Berries</button></li>
+                <li ng-if="!navHidden"><button class="btn btn-primary"><i class="fa fa-search"></i> Search</button></li>
+                <li ng-click="navHidden = !navHidden"><i class="fa" ng-class="{'fa-angle-right' : navHidden, 'fa-angle-left' : !navHidden}"></i></li>
+            </ul>
+        </nav>
     </header>
-    <section class="pokeDex">
+    <section ng-if="sectionDisplay === 'locations'" class="pokeEvol">
         <ul class="pokeList list-unstyled">
-            <li ng-repeat="poke in pokemon">
+            <li ng-repeat="location in locationData" class="pokeListItem">
+                <h3>{{ location.name }}</h3>
+                <p>Region: {{ location.region.name }}</p>
+                <h4 ng-click="areasHidden = !areasHidden">Areas: <span class="pull-right"><i class="fa" [ngClass]="{'fa-angle-down' : areasHidden, 'fa-angle-up' : !areasHidden}"></i></span></h4>
+                <ul>
+                    <li ng-repeat="area in location.areas">{{ area.name }}</li>
+                </ul>
+            </li>
+        </ul>
+    </section>
+    <section ng-if="sectionDisplay === 'evolution'" class="pokeEvol">
+        <ul class="pokeList list-unstyled">
+            <li ng-repeat="evolution in evolutions" class="text-center pokeListItem">
+                <div class="col-md-8 chain">
+                    <h5>{{ evolution.chain.species.name }}</h5>
+                    <div><i class="fa fa-angle-down"></i></div>
+                    <h4 ng-if="evolution.chain.evolves_to[0].species">{{ evolution.chain.evolves_to[0].species.name }}</h4>
+                    <p>
+                        <span ng-if="evolution.chain.evolves_to[0].evolution_details.min_level">Min-Level = {{ evolution.chain.evolves_to[0].evolution_details.min_level }}</span>
+                        <span ng-if="evolution.chain.evolves_to[0].evolution_details.min_happiness">Min-Happiness = {{ evolution.chain.evolves_to[0].evolution_details.min_happiness }}</span>
+                        <span ng-if="evolution.chain.evolves_to[0].evolution_details.min_beauty">Min-Beauty = {{ evolution.chain.evolves_to[0].evolution_details.min_beauty }}</span>
+                    </p>
+                    <div ng-if="evolution.chain.evolves_to[0].evolves_to[0]"><i class="fa fa-angle-down"></i></div>
+                    <h3 ng-if="evolution.chain.evolves_to[0].evolves_to[0]">{{ evolution.chain.evolves_to[0].evolves_to[0].species.name }}</h3>
+                    <p ng-if="evolution.chain.evolves_to[0].evolves_to[0]">
+                        <span ng-if="evolution.chain.evolves_to[0].evolves_to[0].evolution_details.min_level">Min-Level = {{ evolution.chain.evolves_to[0].evolves_to[0].evolution_details.min_level }}</span>
+                        <span ng-if="evolution.chain.evolves_to[0].evolves_to[0].evolution_details.min_happiness">Min-Happiness = {{ evolution.chain.evolves_to[0].evolves_to[0].evolution_details.min_happiness }}</span>
+                        <span ng-if="evolution.chain.evolves_to[0].evolves_to[0].evolution_details.min_beauty">Min-Beauty = {{ evolution.chain.evolves_to[0].evolves_to[0].evolution_details.min_beauty }}</span>
+                    </p>
+                </div>
+                <div class="col-md-4 sprites">
+                    <div></div>
+                </div>
+            </li>
+            <li class="pokeListItem">
+                <h2>Loading...</h2>
+            </li>
+        </ul>
+    </section>
+    <section ng-if="pokemon.length > 1 && sectionDisplay === 'pokemon'" class="pokeDex">
+        <ul class="pokeList list-unstyled">
+            <li ng-repeat="poke in pokemon" class="pokeListItem">
                 <div id="sprite-{{poke.name}}" class="img-holder text-center">
                     <div class="typeHolder">
                         <div ng-repeat="type in poke.types" class="typeIcon type-{{type.type.name}}" title="Type: {{type.type.name}}">
@@ -15,30 +67,62 @@
                 </div>
                 <h2>{{ poke.name }} <span class="pull-right"><i class="poke-icon poke-icon-pokeball-open"></i></span></h2>
                 <p><strong>Height:</strong> {{ poke.height }} | <strong>Weight:</strong> {{ poke.weight }} | <strong>Base XP:</strong> {{ poke.base_experience }}</p>
-                <h4 ng-click="poke.statsVisible = !poke.statsVisible" class="details">Attributes <i class="fa pull-right" ng-class="{'fa-chevron-down' : !poke.statsVisible, 'fa-chevron-up' : poke.statsVisible}"></i></h4>
+                <h4 ng-click="poke.statsVisible = !poke.statsVisible" class="details">Attributes <i class="fa pull-right" [ngClass]="{'fa-chevron-down' : !poke.statsVisible, 'fa-chevron-up' : poke.statsVisible}"></i></h4>
                 <ul class="list-unstyled details-list" ng-hide="!poke.statsVisible">
                     <li ng-repeat="stats in poke.stats">
                         <p><strong>{{stats.stat.name}}</strong> <span class="pull-right">{{stats.base_stat}}</span></p>
                     </li>
                 </ul>
-                <h4 ng-click="poke.abilitiesVisible = !poke.abilitiesVisible" class="details">Abilities <i class="fa pull-right" ng-class="{'fa-chevron-down' : !poke.abilitiesVisible, 'fa-chevron-up' : poke.abilitiesVisible}"></i></h4>
+                <h4 ng-click="poke.abilitiesVisible = !poke.abilitiesVisible" class="details">Abilities <i class="fa pull-right" [ngClass]="{'fa-chevron-down' : !poke.abilitiesVisible, 'fa-chevron-up' : poke.abilitiesVisible}"></i></h4>
                 <ul class="list-unstyled details-list" ng-hide="!poke.abilitiesVisible">
                     <li ng-repeat="ability in poke.abilities">
                         <p>{{ability.ability.name}}</p>
                     </li>
                 </ul>
-                <h4 ng-click="poke.movesVisible = !poke.movesVisible" class="details">Moves <i class="fa pull-right" ng-class="{'fa-chevron-down' : !poke.movesVisible, 'fa-chevron-up' : poke.movesVisible}"></i></h4>
+                <h4 ng-click="poke.movesVisible = !poke.movesVisible" class="details">Moves <i class="fa pull-right" [ngClass]="{'fa-chevron-down' : !poke.movesVisible, 'fa-chevron-up' : poke.movesVisible}"></i></h4>
                 <ul class="list-unstyled details-list moves" ng-hide="!poke.movesVisible">
                     <li ng-repeat="move in poke.moves">
-                        <p>{{move.move.name}} <i class="fa fa-star"></i></p>
+                        <p><i class="fa fa-star"></i> {{move.move.name}}</p>
                     </li>
                 </ul>
             </li>
-            <li>
+            <li class="pokeListItem">
                 <div id="loading-trigger" class="img-holder text-center">
                     <div class="spriteBg"></div>
                 </div>
                 <h2>Loading...</h2>
+            </li>
+        </ul>
+    </section>
+    <section ng-if="berriesData.length > 1 && sectionDisplay === 'berries'" class="pokeDex">
+        <ul class="pokeList list-unstyled">
+            <li ng-repeat="berry in berriesData" class="pokeListItem">
+                <h3 class="text-center">{{ berry.name }}</h3>
+                <div class="col-md-8">
+                    <h4>Stats</h4>
+                    <ul class="list-unstyled">
+                        <li>Size: {{ berry.size }}</li>
+                        <li>Max Harvest: {{ berry.max_harvest }}</li>
+                        <li>Firmness: {{ berry.firmness.name }}</li>
+                        <li>Smoothness: {{ berry.smoothness }}</li>
+                        <li>Soil Dryness: {{ berry.soil_dryness }}</li>
+                        <li>Growth Time: {{ berry.growth_time }}</li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h4>Flavours</h4>
+                    <ul class="list-unstyled">
+                        <li ng-repeat="flavor in berry.flavors">
+                            {{ flavor.flavor.name }} <span>{{ flavor.potency }}</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-12">
+                    <h4>Natural Gift</h4>
+                    <div class="typeIcon type-{{berry.natural_gift_type.name}}" title="Type: {{berry.natural_gift_type.name}}">
+                        <i class="poke-icon poke-icon-{{berry.natural_gift_type.name}}"></i> Power: {{berry.natural_gift_power}}
+                    </div>
+                </div>
             </li>
         </ul>
     </section>
