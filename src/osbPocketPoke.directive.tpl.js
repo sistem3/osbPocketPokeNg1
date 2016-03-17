@@ -8,7 +8,7 @@ angular.module("osbPocketPoke.tpl.html", []).run(["$templateCache", function($te
     "        <nav>\n" +
     "            <ul class=\"list-unstyled list-inline\">\n" +
     "                <li><button class=\"btn btn-primary\" ng-click=\"navHidden = !navHidden\"><i class=\"fa fa-bars\"></i></button></li>\n" +
-    "                <li ng-if=\"!navHidden\"><button class=\"btn btn-primary\" ng-click=\"sectionDisplay = 'pokemon'\"><i class=\"poke-icon poke-icon-pokeball-open\"></i> Pokémon</button></li>\n" +
+    "                <li ng-if=\"!navHidden\"><button class=\"btn btn-primary\" ng-click=\"sectionDisplay = 'pokemon'\"><i class=\"poke-icon poke-icon-pokeball-open\"></i> Pok&#x00E9;mon</button></li>\n" +
     "                <li ng-if=\"!navHidden\"><button class=\"btn btn-primary\" ng-click=\"getLocations()\"><i class=\"fa fa-map-marker\"></i> Locations</button></li>\n" +
     "                <li ng-if=\"!navHidden\"><button class=\"btn btn-primary\" ng-click=\"getEvolutionChain()\"><i class=\"poke-icon poke-icon-strain\"></i> Evolution</button></li>\n" +
     "                <li ng-if=\"!navHidden\"><button class=\"btn btn-primary\" ng-click=\"getBerries()\"><i class=\"poke-icon poke-icon-berry\"></i> Berries</button></li>\n" +
