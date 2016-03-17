@@ -87,6 +87,7 @@ angular.module('sistem3.osb-pocket-poke', ['osb-pocket-poke-template'])
                                 $scope.locationData.push(data);
                                 $scope.sectionDisplay = 'locations';
                                 localStorage.setItem('osbPocketPoke.locationData', JSON.stringify($scope.locationData));
+                                $scope.$apply();
                             });
                         })
                         .catch(function(err) {
@@ -137,6 +138,7 @@ angular.module('sistem3.osb-pocket-poke', ['osb-pocket-poke-template'])
                 $scope.getBerry = function(berry) {
                     if ($scope.berriesData.length > 1) {
                         $scope.sectionDisplay = 'berries';
+                        $scope.$apply();
                         return false;
                     }
                     fetch(berry.url)
@@ -149,6 +151,7 @@ angular.module('sistem3.osb-pocket-poke', ['osb-pocket-poke-template'])
                                 $scope.berriesData.push(data);
                                 $scope.sectionDisplay = 'berries';
                                 localStorage.setItem('osbPocketPoke.berriesData', JSON.stringify($scope.berriesData));
+                                $scope.$apply();
                             });
                         })
                         .catch(function(err) {
@@ -214,6 +217,7 @@ angular.module('sistem3.osb-pocket-poke', ['osb-pocket-poke-template'])
                         $scope.evolutionViewList.forEach(function(element, index, array) {
                             $scope.getEvolution(element);
                         });
+                        $scope.$apply();
                         return false;
                     }
                     fetch(this.pokemonApiBase + '/api/v2/evolution-chain/')
@@ -232,6 +236,7 @@ angular.module('sistem3.osb-pocket-poke', ['osb-pocket-poke-template'])
                                 $scope.evolutionViewList.forEach(function(element, index, array) {
                                     $scope.getEvolution(element);
                                 });
+                                $scope.$apply();
                             });
                         })
                         .catch(function(err) {
