@@ -113,7 +113,7 @@ angular.module('sistem3.osb-pocket-poke', ['osb-pocket-poke-template'])
                         .catch(function(err) {
                             console.log('Failed');
                         });
-                }
+                };
                 // Get Contest(s)
                 $scope.getContests = function() {
                     console.log('Get dem contests');
@@ -132,7 +132,7 @@ angular.module('sistem3.osb-pocket-poke', ['osb-pocket-poke-template'])
                         .catch(function(err) {
                             console.log('Failed');
                         });
-                }
+                };
                 // Get Berry
                 $scope.getBerry = function(berry) {
                     if ($scope.berriesData.length > 1) {
@@ -154,7 +154,7 @@ angular.module('sistem3.osb-pocket-poke', ['osb-pocket-poke-template'])
                         .catch(function(err) {
                             console.log('Failed');
                         });
-                }
+                };
                 // Get Berrie(s)
                 $scope.getBerries = function() {
                     console.log('Get me some berries');
@@ -164,7 +164,6 @@ angular.module('sistem3.osb-pocket-poke', ['osb-pocket-poke-template'])
                         });
                         return false;
                     }
-                    var $scope = this;
                     fetch(this.pokemonApiBase + '/api/v2/berry/')
                         .then(function(response) {
                             if (response.status !== 200) {
@@ -184,7 +183,7 @@ angular.module('sistem3.osb-pocket-poke', ['osb-pocket-poke-template'])
                         .catch(function(err) {
                             console.log('Failed');
                         });
-                }
+                };
                 // Get Evolution
                 $scope.getEvolution = function(chain) {
                     if ($scope.evolutions.length > 1) {
@@ -205,7 +204,7 @@ angular.module('sistem3.osb-pocket-poke', ['osb-pocket-poke-template'])
                         .catch(function(err) {
                             console.log('Failed');
                         });
-                }
+                };
                 // Get Evolution Chain
                 $scope.getEvolutionChain = function() {
                     console.log('Do the evolution');
@@ -238,7 +237,7 @@ angular.module('sistem3.osb-pocket-poke', ['osb-pocket-poke-template'])
                         .catch(function(err) {
                             console.log('Failed');
                         });
-                }
+                };
                 // Set Sprite (DOM)
                 $scope.setPokeSprite = function(data) {
                     var sprite = new Image();
