@@ -42,7 +42,7 @@
       }
     }
 
-    li {
+    .pokeListItem {
       box-sizing: border-box;
       text-transform: capitalize;
       -webkit-flex: 1 1 25%;
@@ -69,7 +69,6 @@
         padding: 10px;
         margin: 0;
         background-color: $malibu;
-        //border-top: 1px solid $color-white;
         border-top: 1px solid $color-black;
       }
 

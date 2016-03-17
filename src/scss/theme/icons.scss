@@ -24,6 +24,27 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.poke-icon-berry:before {
+  content: '\e912';
+}
+.poke-icon-strain:before {
+  content: '\e913';
+}
+.poke-icon-fairy:before {
+  content: '\e907';
+}
+.poke-icon-flying:before {
+  content: '\e908';
+}
+.poke-icon-ghost:before {
+  content: '\e90b';
+}
+.poke-icon-ice:before {
+  content: '\e90d';
+}
+.poke-icon-steel:before {
+  content: '\e919';
+}
 .poke-icon-pokeball-open:before {
   content: '\e910';
 }
@@ -33,14 +54,8 @@
 .poke-icon-poison:before {
   content: '\e90f';
 }
-.poke-icon-steel:before {
-  content: '\e90b';
-}
 .poke-icon-rock:before {
   content: '\e90c';
-}
-.poke-icon-fairy:before {
-  content: '\e907';
 }
 .poke-icon-dragon:before {
   content: '\e902';
@@ -50,12 +65,6 @@
 }
 .poke-icon-dark:before {
   content: '\e90a';
-}
-.poke-icon-ice:before {
-  content: '\e90d';
-}
-.poke-icon-flying:before {
-  content: '\e908';
 }
 .poke-icon-bug:before {
   content: '\f091';
@@ -84,4 +93,3 @@
 .poke-icon-fighting:before {
   content: '\e906';
 }
-

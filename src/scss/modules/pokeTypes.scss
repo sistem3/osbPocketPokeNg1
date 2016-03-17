@@ -46,7 +46,7 @@
   background-color: $japanese-laurel;
 
   i {
-    color: mix($color-black, $japanese-laurel, 30);
+    color: mix($color-white, $japanese-laurel, 30);
   }
 }
 
@@ -60,13 +60,17 @@
 
 .type-fighting {
   background-color: $guardsman-red;
+
+  i {
+    color: rgba($color-black, 0.4);
+  }
 }
 
 .type-poison {
   background-color: $purple;
   
   i {
-    color: mix($color-white, $purple, 30);
+    color: mix($color-white, $purple, 40);
   }
 }
 
@@ -74,15 +78,15 @@
   background-color: $raw-umber;
 
   i {
-    color: mix($color-black, $raw-umber, 30);
+    color: mix($color-white, $raw-umber, 30);
   }
 }
 
 .type-flying {
-  background-color: $prelude;
+  background-color: $bright-turquoise;
 
   i {
-    color: mix($color-black, $prelude, 30);
+    color: mix($color-black, $bright-turquoise, 30);
   }
 }
 
