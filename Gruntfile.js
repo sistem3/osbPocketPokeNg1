@@ -53,5 +53,5 @@ module.exports = function (grunt) {
 
   grunt.registerTask('default', ['serve']);
   grunt.registerTask('template', ['html2js']);
-  grunt.registerTask('build', ['grunt-sass', 'grunt-html2js', 'concat']);
+  grunt.registerTask('build', ['sass', 'html2js', 'concat']);
 };
